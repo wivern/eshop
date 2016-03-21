@@ -1,0 +1,196 @@
+-@ val title: String
+-@ val headline: String = title
+-@ val body: String
+
+!!! 5
+%html
+  %head
+    %title= title
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %meta(name="description" content="")
+    %meta(name="author" content="")
+
+    / Bootstrap style
+    %link(id="callCss" rel="stylesheet" href="/themes/bootshop/bootstrap.min.css" media="screen")
+    %link(href="/themes/css/base.css" rel="stylesheet" media="screen")
+    / Bootstrap style responsive
+    %link(href="/themes/css/bootstrap-responsive.min.css" rel="stylesheet")
+    %link(href="/themes/css/font-awesome.css" rel="stylesheet" type="text/css")
+    / Google-code-prettify
+    %link(href="/themes/js/google-code-prettify/prettify.css" rel="stylesheet")
+    / fav and touch icons
+    %link(rel="shortcut icon" href="/themes/images/ico/favicon.ico")
+    %link(rel="apple-touch-icon-precomposed" sizes="144x144" href="/themes/images/ico/apple-touch-icon-144-precomposed.png")
+    %link(rel="apple-touch-icon-precomposed" sizes="114x114" href="/themes/images/ico/apple-touch-icon-114-precomposed.png")
+    %link(rel="apple-touch-icon-precomposed" sizes="72x72" href="/themes/images/ico/apple-touch-icon-72-precomposed.png")
+    %link(rel="apple-touch-icon-precomposed" href="/themes/images/ico/apple-touch-icon-57-precomposed.png")
+    %style(type="text/css" id="enject")
+  %body
+    #header
+      .container
+        #welcomeLine.row
+          .span6
+            Welcome!
+            %strong
+              User
+          .span6
+          .pull-right
+            %a(href="product_summary.html")
+              %span
+                Fr
+            %a(href="product_summary.html")
+              %span
+                Es
+            %a(href="product_summary.html")
+              %span.btn.btn-mini
+                En
+            %a(href="product_summary.html")
+              %span
+                &pound;
+            %span.btn.btn-mini
+              $155.00
+            %a(href="product_summary.html")
+              %span
+                $
+            %a(href="product_summary.html")
+              %span.btn.btn-mini.btn-primary
+                %i.icon-shopping-cart.icon-white
+                [ 3 ] Itemes in your cart
+        /Navbar
+        #logoArea.navbar
+          %a#smallScreen.btn.btn-navbar(data-target="#topMenu" data-toggle="collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .navbar-inner
+            %a.brand(href="index.html")
+              %img(src="/themes/images/logo.png" alt="Bootsshop")
+            %form.form-inline.navbar-search(method="post" action="products.html")
+              %input#srchFld.srchTxt(type="text")
+              %select.srchTxt
+                %option
+                  All
+                %option
+                  CLOTHES
+                %option
+                  FOOD AND BEVERAGES
+                %option
+                  HEALTH & BEAUTY
+                %option
+                  SPORTS & LEISURE
+                %option
+                  BOOKS & ENTERTAINMENTS
+              %button#submitButton.btn.btn-primary(type="submit")
+                Go
+            %ul#topMenu.nav.pull-right
+              %li
+                %a(href="special_offer.html")
+                  Specials Offer
+              %li
+                %a(href="normal.html")
+                  Delivery
+              %li
+                %a(href="contact.html")
+                  Contact
+              %li
+                %a(href="#login" role="button" data-toggle="modal" style="padding-right:0")
+                  %span.btn.btn-large.btn-success
+                    Login
+                  #login.modal.hide.fade.in(tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false")
+                    .modal-header
+                      %button.close(type="button" data-dismiss="modal" aria-hidden="true")
+                        ?
+                      %h3
+                        Login Block
+                    .modal-body
+                      %form.form-horizontal.loginFrm
+                        .control-group
+                          %input#inputEmail(type="text" placeholder="Email")
+                        .control-group
+                          %input#inputPassword(type="password" placeholder="Password")
+                        .control-group
+                          %label.checkbox
+                            %input(type="checkbox")
+                            Remember me
+                      %button.btn.btn-success(type="submit")
+                        Sign in
+                      %button.btn(data-dismiss="modal" aria-hidden="true")
+                        Close
+    #mainBody
+      .container
+        .row
+          /Sidebar
+          = render("/WEB-INF/views/partials/sidebar.scaml")
+          #mainCol.span9
+            %ul.breadcrumb
+              %li
+                %a(href="/")
+                  Home
+                %span.divider
+              %li.active= headline
+            %h3= headline
+            %hr.soft
+            -# Content
+            #content
+              %h1= headline
+              != body
+    #footerSection
+      .container
+        .row
+          .span3
+            %h5
+              ACCOUNT
+            %a(href="login.html")
+              YOUR ACCOUNT
+            %a(href="login.html")
+              PERSONAL INFORMATION
+            %a(href="login.html")
+              ADDRESSES
+            %a(href="login.html")
+              DISCOUNT
+            %a(href="login.html")
+              ORDER HISTORY
+          .span3
+            %h5
+              INFORMATION
+            %a(href="contact.html")
+              CONTACT
+            %a(href="register.html")
+              REGISTRATION
+            %a(href="legal_notice.html")
+              LEGAL NOTICE
+            %a(href="tac.html")
+              TERMS AND CONDITIONS
+            %a(href="faq.html")
+              FAQ
+          .span3
+            %h5
+              OUR OFFERS
+            %a(href="#")
+              NEW PRODUCTS
+            %a(href="#")
+              TOP SELLERS
+            %a(href="special_offer.html")
+              SPECIAL OFFERS
+            %a(href="#")
+              MANUFACTURERS
+            %a(href="#")
+              SUPPLIERS
+          #socialMedia.span3.pull-right
+            %h5
+              SOCIAL MEDIA
+            %a(href="#")
+              %img(width="60" height="60" src="/themes/images/facebook.png" title="facebook" alt="facebook")
+            %a(href="#")
+              %img(width="60" height="60" src="/themes/images/twitter.png" title="twitter" alt="twitter")
+            %a(href="#")
+              %img(width="60" height="60" src="/themes/images/youtube.png" title="youtube" alt="youtube")
+        %p.pull-right
+          &copy; Bootshop
+
+%script(src="/themes/js/jquery.js" type="text/javascript")
+%script(src="/themes/js/bootstrap.min.js" type="text/javascript")
+%script(src="/themes/js/google-code-prettify/prettify.js")
+%script(src="/themes/js/bootshop.js")
+%script(src="/themes/js/jquery.lightbox-0.5.js")
+

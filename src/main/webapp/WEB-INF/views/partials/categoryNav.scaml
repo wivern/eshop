@@ -1,0 +1,16 @@
+-@ val category : domain.Category
+
+- if (category.children.isEmpty){
+  %li
+    %a(href="/products/#{category.id}")= category.name
+- } else {
+  %li.subMenu
+    %a= category.name
+    %ul
+      - category.children.map {child =>
+        %li
+          %a
+            %i.icon-chevron-right
+            = child.name
+      - }
+- }

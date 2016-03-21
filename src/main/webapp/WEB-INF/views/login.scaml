@@ -1,0 +1,17 @@
+- attributes("title") = "Login"
+
+!!! 5
+%html
+  %head
+    %title
+      Login
+  %body
+    %form(method="POST" action="/login" )
+      %label
+        E-Mail:
+      %input(type="text" name="login")
+      %label
+        Password:
+      %input(type="password" name="password")
+      %button(type="submit")
+        Login

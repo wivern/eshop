@@ -1,0 +1,11 @@
+- attributes("title") = "Scalatra: a tiny, Sinatra-like web framework for Scala"
+- attributes("headline") = "Welcome to Scalatra"
+
+- import domain.Product
+-@ val products : List[Product]
+-@ val messages : org.scalatra.i18n.Messages
+
+%h1= messages.get("greeting").getOrElse("not found")
+
+%p
+    = collection(products)
