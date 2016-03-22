@@ -5,11 +5,11 @@
     %a(href="/products/#{category.id}")= category.name
 - } else {
   %li.subMenu
-    %a= category.name
+    %a(href="/products/#{category.id}")= category.name
     %ul
       - category.children.map {child =>
         %li
-          %a
+          %a(href="/products/#{child.id}")
             %i.icon-chevron-right
             = child.name
       - }

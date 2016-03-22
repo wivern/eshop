@@ -1,5 +1,34 @@
 -@ val category : domain.Category
 - attributes("title") = category.name
 
-%h1= category.name
+%p
+  Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - that is why our goods are so popular and we have a great number of faithful customers all over the country.
 %hr.soft
+%form.form-horizontal.span6
+  .control-group
+    %label.control-label.alignL
+      Sort By
+    %select
+      %option
+        Product name A - Z
+      %option
+        Product name Z - A
+      %option
+        Product Stoke
+      %option
+        Price Lowest first
+#myTab.pull-right
+  %a(href="#listView" data-toggle="tab")
+    %span.btn.btn-large
+      %i.icon-list
+  %a(href="#blockView" data-toggle="tab")
+    %span.btn.btn-large.btn-primary
+      %i.icon-th-large
+%br.clr/
+.tab-content(ng-controller="CartController")
+  .tab-pane#listView
+    - category.products.map {product => render("/WEB-INF/views/partials/productCellListView.scaml", Map("product" -> product))}
+    %hr.soft
+  .tab-pane.active#blockView
+    %ul.thumbnails
+      - category.products.map {product => render("/WEB-INF/views/partials/productCellBlockView.scaml", Map("product" -> product))}

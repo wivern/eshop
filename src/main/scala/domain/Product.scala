@@ -13,6 +13,7 @@ object Product{
  */
 case class Product(id: Long,
                    name : String,
-                   index: String) extends KeyedEntity[Long]{
+                   index: String,
+                   description: Option[String]) extends KeyedEntity[Long]{
   lazy val categories = Catalogue.productCategories.left(this)
 }

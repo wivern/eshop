@@ -1,0 +1,27 @@
+-@ val product : domain.Product
+
+.row
+  .span2
+    %img(src="/themes/images/products/3.jpg" alt="")
+  .span4
+    %h3
+      New | Available
+    %hr.soft
+    %h5= product.name
+    %p= product.description
+    %a.btn.btn-small.pull-right(href="product_details.html")
+      View Details
+    %br.clr/
+  .span3.alignR
+    %form.form-horizontal.qtyFrm
+      %h3
+        $140.00
+      %label.checkbox
+        %input(type="checkbox")
+        Adds product to compair
+      %br/
+      %a.btn.btn-large.btn-primary(href="#" ng-click="addToCart()")
+        Add to
+        %i.icon-shopping-cart
+      %a.btn.btn-large(href="product_details.html")
+        %i.icon-zoom-in

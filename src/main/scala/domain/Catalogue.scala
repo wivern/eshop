@@ -17,10 +17,12 @@ object Catalogue extends Schema{
   val categoryToChildren = oneToManyRelation(categories, categories).via((p, c) => p.id === c.parentId)
 
   on(products)(p => declare(
-    p.index is(unique, indexed)
+    p.index is(unique, indexed),
+    p.description is dbType("BLOB")
   ))
   on(categories)(c => declare(
-    c.name is indexed
+    c.name is indexed,
+    c.description is dbType("BLOB")
   ))
   on(users)(u => declare(
     u.email is(unique, indexed)

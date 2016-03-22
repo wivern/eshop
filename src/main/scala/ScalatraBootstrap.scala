@@ -1,7 +1,7 @@
 import javax.servlet.ServletContext
 
 import com.mchange.v2.c3p0.ComboPooledDataSource
-import controllers.{ProductsController, LoginController, AdminController, IndexController}
+import controllers._
 import org.scalatra.LifeCycle
 import org.slf4j.LoggerFactory
 import org.squeryl.Session
@@ -20,6 +20,7 @@ class ScalatraBootstrap extends LifeCycle with DatabaseInititalizer {
 
   override def init(context: ServletContext) {
     context mount(new AdminController, "/admin")
+    context mount(new ApiController, "/api/v1")
     context mount(new ProductsController, "/products")
     context mount(new IndexController, "/")
     SessionFactory.concreteFactory = Some(() => connection)

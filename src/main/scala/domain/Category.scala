@@ -3,6 +3,7 @@ package domain
 import org.squeryl.KeyedEntity
 import org.squeryl.dsl.OneToMany
 import org.squeryl.PrimitiveTypeMode._
+import org.squeryl.annotations._
 
 
 /**
@@ -17,7 +18,10 @@ object Category{
 
 
 case class Category(id: Long,
-                    name: String, parentId: Option[Long]) extends KeyedEntity[Long] {
+                    name: String,
+                    parentId: Option[Long],
+                    description: Option[String]) extends KeyedEntity[Long] {
+  def this(id: Long, name: String) = this(id, name, None, None)
   lazy val products = Catalogue.productCategories.right(this)
   lazy val children : OneToMany[Category] = Catalogue.categoryToChildren.left(this)
 }
