@@ -10,8 +10,11 @@
     %h4(style="text-align:center")
       %a.btn(href="product_details.html")
         %i.icon-zoom-in
-      %a.btn(href="#")
+      %a.btn(href="#" ng-hide="cartContains(#{product.id})" ng-click="addToCart(#{product.id})")
         Add to
+        %i.icon-shopping-cart
+      %a.btn(href="#" ng-show="cartContains(#{product.id})")
+        Already in
         %i.icon-shopping-cart
       %a.btn.btn-primary(href="#")
         &euro;222.00

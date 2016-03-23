@@ -1,0 +1,73 @@
+-@ val cart : domain.order.Cart
+- attributes("title") = "SHOPPING CART"
+
+%table.table.table-bordered
+  %tr
+    %th
+      I AM ALREADY REGISTERED
+  %tr
+    %td>
+      %form.form-horizontal
+        .control-group
+          %label.control-label(for="inputUsername")
+            Username
+          .controls
+            %input#inputUsername(type="text" placeholder="Username")
+        .control-group
+          %label.control-label(for="inputPassword1")
+            Password
+          .controls
+            %input#inputPassword1(type="password" placeholder="Password")
+        .control-group
+          .controls
+            %button.btn(type="submit")
+              Sign in
+            OR
+            %a.btn(href="register.html")
+              Register Now!
+        .control-group
+          .controls
+            %a(href="forgetpass.html" style="text-decoration:underline")
+              Forgot password ?
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th
+        Product
+      %th
+        Description
+      %th
+        Quantity/Update
+      %th
+        Price
+      %th
+        Discount
+      %th
+        Tax
+      %th
+        Total
+  %tbody
+    - cart.items.map{ item =>
+      %tr(ng-show="cartContains(#{item.product.id})")
+        %td
+          %img(width="60" src="themes/images/products/4.jpg" alt="")
+        %td= item.product.name
+        %td
+          .input-append
+            %input.span1(style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text" value={item.quantity})
+            %button.btn(type="button")
+              %i.icon-minus
+            %button.btn(type="button")
+              %i.icon-plus
+            %button.btn.btn-danger(type="button" ng-click="removeFromCart(#{item.product.id})")
+              %i.icon-remove.icon-white
+        %td
+          $120.00
+        %td
+          $25.00
+        %td
+          $15.00
+        %td
+          $110.00
+    - }

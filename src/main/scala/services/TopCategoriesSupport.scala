@@ -1,4 +1,4 @@
-package controllers
+package services
 
 import domain.Category
 import org.scalatra.ScalatraBase

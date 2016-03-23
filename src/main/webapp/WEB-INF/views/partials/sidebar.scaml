@@ -1,9 +1,9 @@
 -@ val topCategories : List[domain.Category]
 #sidebar.span3
   .well.well-small
-    %a#myCart(href="product_summary.html")
+    %a#myCart(href="/cart")
       %img(src="/themes/images/ico-cart.png" alt="cart")
-        3 Items in your cart
+        {{cart.count}} Items in your cart
         %span.badge.badge-warning.pull-right
           $155.00
   %ul#sideManu.nav.nav-tabs.nav-stacked

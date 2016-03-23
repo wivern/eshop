@@ -25,7 +25,7 @@
     %span.btn.btn-large.btn-primary
       %i.icon-th-large
 %br.clr/
-.tab-content(ng-controller="CartController")
+.tab-content
   .tab-pane#listView
     - category.products.map {product => render("/WEB-INF/views/partials/productCellListView.scaml", Map("product" -> product))}
     %hr.soft

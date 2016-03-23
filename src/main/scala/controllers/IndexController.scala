@@ -3,17 +3,23 @@ package controllers
 import domain.Product
 import helpers.Keys
 import org.slf4j.LoggerFactory
+import services.{TopCategoriesSupport, CartSupport}
+import util.SessionUtils
 
 /**
  * @author VKoulakov
  * @since 14.03.2016 19:05
  */
-class IndexController extends ControllerBase with TopCategoriesSupport{
+class IndexController extends ControllerBase with TopCategoriesSupport with CartSupport{
   val logger = LoggerFactory.getLogger(getClass)
   get("/") {
     contentType = "text/html;charset=UTF-8"
     val products = Product.all.toList
     scaml("/index.scaml", "products" -> products)
+  }
+  get("/cart"){
+    contentType = "text/html;charset=UTF-8"
+    scaml("/products_summary.scaml", "cart" -> currentCart)
   }
   get("/hello") {
     <html>

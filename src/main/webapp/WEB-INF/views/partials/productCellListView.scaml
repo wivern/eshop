@@ -20,8 +20,11 @@
         %input(type="checkbox")
         Adds product to compair
       %br/
-      %a.btn.btn-large.btn-primary(href="#" ng-click="addToCart()")
+      %a.btn.btn-large.btn-primary(href="#" ng-click="addToCart(#{product.id})" ng-hide="cartContains(#{product.id})")
         Add to
+        %i.icon-shopping-cart
+      %a.btn.btn-large(ng-show="cartContains(#{product.id})")
+        Already in
         %i.icon-shopping-cart
       %a.btn.btn-large(href="product_details.html")
         %i.icon-zoom-in

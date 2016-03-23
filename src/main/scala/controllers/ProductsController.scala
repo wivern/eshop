@@ -2,6 +2,7 @@ package controllers
 
 import domain.Category
 import org.scalatra.NotFound
+import services.TopCategoriesSupport
 
 /**
  * @author VKoulakov

@@ -26,7 +26,7 @@
     %link(rel="apple-touch-icon-precomposed" href="/themes/images/ico/apple-touch-icon-57-precomposed.png")
     %style(type="text/css" id="enject")
     %script(src="/js/angular.min.js" type="text/javascript" )
-  %body(ng-app="eshop")
+  %body(ng-app="eshop" ng-controller="CartController")
     #header
       .container
         #welcomeLine.row
@@ -56,7 +56,7 @@
             %a(href="product_summary.html")
               %span.btn.btn-mini.btn-primary
                 %i.icon-shopping-cart.icon-white
-                [ 3 ] Itemes in your cart
+                [ {{cart.count}} ] Itemes in your cart
         /Navbar
         #logoArea.navbar
           %a#smallScreen.btn.btn-navbar(data-target="#topMenu" data-toggle="collapse")

@@ -14,7 +14,7 @@ import util.DatabaseSessionSupport
 abstract class ControllerBase extends ScalatraServlet with ScalateSupport with DatabaseSessionSupport
 with AuthenticationSupport with FlashMapSupport with ScalateI18nSupport{
   before(){
-    templateEngine.bindings ::= Binding("messages", classOf[Messages].getName, true, isImplicit = true)
+    templateEngine.bindings ::= Binding("messages", classOf[Messages].getName, importMembers = true, isImplicit = true)
   }
 
 }
