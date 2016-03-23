@@ -9,6 +9,13 @@ app.service("CartService", function($http){
     };
     this.removeFromCart = function(id){
         return $http.delete("/api/v1/cart/"+id);
+    };
+    this.updateCart = function(id, quantity){
+        return $http.({
+            url: "/api/v1/cart/"+id,
+            method: "PUT",
+            data: {quantity: quantity}
+        });
     }
 });
 
