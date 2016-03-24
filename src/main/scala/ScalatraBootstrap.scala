@@ -18,10 +18,13 @@ class ScalatraBootstrap extends LifeCycle with DatabaseInititalizer {
 
   val cpds = new ComboPooledDataSource
 
+  implicit val swagger = new ApiSwagger
+
   override def init(context: ServletContext) {
     context mount(new AdminController, "/admin")
     context mount(new ApiController, "/api/v1")
     context mount(new ProductsController, "/products")
+    context mount(new ResourcesApp, "/api-docs")
     context mount(new IndexController, "/")
     SessionFactory.concreteFactory = Some(() => connection)
 
