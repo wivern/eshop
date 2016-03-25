@@ -1,8 +1,8 @@
 package domain
 
-import domain.price.{Price, Prices}
+import data.squeryl.MoneyTypes._
+import domain.price.Price
 import org.squeryl.KeyedEntity
-import org.squeryl.PrimitiveTypeMode._
 import util.DefaultParams
 
 object Product {
@@ -48,7 +48,7 @@ case class Product(id: Long,
                    index: String,
                    description: Option[String],
                    retailPriceType: Option[Long]
-                    ) extends KeyedEntity[Long] {
+                    ) extends KeyedEntity[Long] with Serializable{
   def this(id: Long, name: String, index: String) = this(id, name, index, None, None)
 
   lazy val categories = Catalogue.productCategories.left(this)

@@ -11,7 +11,7 @@ import org.scalatra.scalate.ScalateSupport
 trait TopCategoriesSupport {
   this: ScalatraBase with ScalateSupport =>
   before() {
-    val categories = Category.topCategories().toList
+    val categories = Category.topCategories().iterator.toList
     templateAttributes("topCategories") = categories
   }
 }

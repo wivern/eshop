@@ -7,12 +7,14 @@ package controllers
 
 import domain.order.{Cart, CartItem}
 import domain.{Category, Product}
-import org.json4s.{DefaultFormats, FieldSerializer, Formats}
+import json.MoneySerializer
+import org.joda.money.{CurrencyUnit, Money}
+import org.json4s._
 import org.scalatra.json.JacksonJsonSupport
 import org.scalatra.swagger.{Swagger, SwaggerSupport}
 import org.scalatra.{BadRequest, NotFound, Ok}
 import services.pagination.{Page, PaginationSupport}
-import services.{CartSupport, TopCategoriesSupport}
+import services.{PricingService, CartSupport, TopCategoriesSupport}
 import util.DefaultParams
 
 class ApiController(implicit val swagger: Swagger) extends ControllerBase with JacksonJsonSupport with CartSupport with TopCategoriesSupport
@@ -27,10 +29,13 @@ with SwaggerSupport with PaginationSupport{
     ignore("categories")
   )
 
+
+
   protected implicit lazy val jsonFormats: Formats = DefaultFormats +
     FieldSerializer[Cart]() +
     FieldSerializer[CartItem]() +
     FieldSerializer[Page[Product]]() +
+    new MoneySerializer() +
     categorySerializer +
     productSerializer
 
@@ -105,29 +110,34 @@ with SwaggerSupport with PaginationSupport{
   }
   /* Catalogue */
   get("/catalogue") {
-    Category.topCategories().toList
+    Category.topCategories().iterator.toList
   }
   get("/catalogue/:parent") {
     val parentId = params.getOrElse("parent", halt(400)).toLong
-    Category.children(parentId).toList
+    Category.children(parentId).iterator.toList
   }
+  import PricingService._
   get("/catalogue/products/:category") {
     val categoryId = params.getOrElse("category", halt(400)).toLong
     val page = params.getOrElse("page", "-1").toInt
     val pageLength = params.getOrElse("size", DefaultParams.PAGE_LENGTH.toString).toInt
     page match {
-      case -1 => Product.byCategory (categoryId).toList
-      case _ => paginate(Product.byCategoryPaging(categoryId, page * pageLength, pageLength).toList, page, {
+      case -1 => val products = productItem(Product.byCategory (categoryId).iterator.toList)
+        logger.info("Products: {}", products.mkString("\n"))
+        products
+      case _ => paginate(productItem(Product.byCategoryPaging(categoryId, page * pageLength, pageLength).iterator.toList), page, {
         Product.byCategoryCount(categoryId).single.measures
       })
     }
   }
   get("/catalogue/product/:id") {
     val productId = params.getOrElse("id", halt(400)).toLong
-    Product.get(productId).getOrElse(NotFound(reason = "Product not found"))
+    val product = Product.get(productId).getOrElse(halt(404, reason = "Product not found"))
+    productItem(product)
   }
   get("/catalogue/product/:id/categories") {
     val productId = params.getOrElse("id", halt(400)).toLong
-    Category.byProduct(productId).toList
+    Category.byProduct(productId).iterator.toList
   }
 }
+

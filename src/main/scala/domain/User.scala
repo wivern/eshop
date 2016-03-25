@@ -1,17 +1,13 @@
 package domain
 
 import org.squeryl.KeyedEntity
-import org.squeryl.PrimitiveTypeMode._
+import data.squeryl.MoneyTypes._
 
 object User{
   import Catalogue._
 
   def findByEmailAndPassword(login: String, password: String) : Option[User] = {
-    val result = transaction(users.where(u => u.email === login and u.password === password).toList)
-    result.size match {
-      case 0 => Option(null)
-      case _ => Option(result.head)
-    }
+    transaction(users.where(u => u.email === login and u.password === password).singleOption)
   }
 
   def findByEmail(email: String) = transaction(users.where(u => u.email === email).single)

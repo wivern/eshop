@@ -1,7 +1,8 @@
 package domain
 
 import org.squeryl.Schema
-import org.squeryl.PrimitiveTypeMode._
+//import org.squeryl.PrimitiveTypeMode._
+import data.squeryl.MoneyTypes._
 
 /**
  * @author VKoulakov

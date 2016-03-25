@@ -1,9 +1,10 @@
 package domain.price
 
 import org.joda.money.Money
+import org.slf4j.LoggerFactory
 import org.squeryl.KeyedEntity
 import org.squeryl.dsl.ManyToOne
-import org.squeryl.PrimitiveTypeMode._
+import data.squeryl.MoneyTypes._
 import util.DefaultParams
 
 /**
@@ -18,6 +19,8 @@ case class Price(id: Long, priceTypeId: Long, productId: Long, amount: Money) ex
 object Price{
   import Prices._
 
+  private def logger = LoggerFactory.getLogger(getClass)
+
   def byProduct(productId: Long) = transaction{
     from(prices)(p => where(p.productId === productId) select p)
   }
@@ -28,9 +31,10 @@ object Price{
 
   def byPriceTypeAndProduct(priceTypeId: Long, productId: Long) : Option[Price] = transaction{
     try {
-      Some(from(prices)(p => where(p.priceTypeId === priceTypeId and productId === productId) select p).single)
+      from(prices)(p => where(p.priceTypeId === priceTypeId and p.productId === productId) select p).singleOption
     }catch{
-      case e: Exception => None
+      case e: Exception => logger.error("Failed to load price", e); None
     }
   }
+
 }

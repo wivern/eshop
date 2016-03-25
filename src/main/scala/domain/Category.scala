@@ -1,7 +1,7 @@
 package domain
 
 import org.squeryl.KeyedEntity
-import org.squeryl.PrimitiveTypeMode._
+import data.squeryl.MoneyTypes._
 import org.squeryl.dsl.OneToMany
 
 

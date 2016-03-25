@@ -11,10 +11,9 @@ import util.SessionUtils
  * @since 14.03.2016 19:05
  */
 class IndexController extends ControllerBase with TopCategoriesSupport with CartSupport{
-  val logger = LoggerFactory.getLogger(getClass)
   get("/") {
     contentType = "text/html;charset=UTF-8"
-    val products = Product.all.toList
+    val products = Product.all.iterator.toList
     scaml("/index.scaml", "products" -> products)
   }
   get("/cart"){

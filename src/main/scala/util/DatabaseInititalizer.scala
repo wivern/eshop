@@ -4,7 +4,7 @@ import domain._
 import domain.price.{Price, PriceType, Prices}
 import org.joda.money.{CurrencyUnit, Money}
 import org.slf4j.Logger
-import org.squeryl.PrimitiveTypeMode._
+import data.squeryl.MoneyTypes._
 
 /**
  * @author VKoulakov
@@ -48,8 +48,8 @@ trait DatabaseInititalizer {
     ))
     prices.insert(List(
       new Price(1, 1, 1, Money.of(CurrencyUnit.EUR, 249.0)),
-      new Price(1, 1, 2, Money.of(CurrencyUnit.EUR, 119.0)),
-      new Price(1, 1, 3, Money.of(CurrencyUnit.EUR, 379.0))
+      new Price(2, 1, 2, Money.of(CurrencyUnit.EUR, 119.0)),
+      new Price(3, 1, 3, Money.of(CurrencyUnit.EUR, 379.0))
     ))
     productCategories.insert(List(
       new ProductCategory(1, 2),

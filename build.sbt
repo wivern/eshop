@@ -15,7 +15,7 @@ lazy val root = (project in file(".")).settings(
     "org.scalatra"      %% "scalatra-json"     % scalatraVersion,
     "org.scalatra"      %% "scalatra-swagger"  % scalatraVersion,
     "org.scalatra"      %% "scalatra-specs2"   % scalatraVersion    % "test",
-    "org.squeryl"       % "squeryl_2.11"       % "0.9.5-7",
+    "org.squeryl"       % "squeryl_2.11"       % "0.9.6-RC4",
     "org.joda"          % "joda-money"         % "0.11",
     "com.h2database"    % "h2"                 % "1.4.181",
     "com.mchange"       % "c3p0"               % "0.9.5.1",
