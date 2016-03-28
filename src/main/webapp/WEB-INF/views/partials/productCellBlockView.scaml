@@ -1,19 +1,19 @@
--@ val product : domain.Product
+-@ val item : domain.price.ProductItem
 
 %li.span3
   .thumbnail
     %a(href="product_details.html")
       %img(src="/themes/images/products/3.jpg" alt="")
   .caption
-    %h5= product.name
-    %p= product.description
+    %h5= item.product.name
+    %p= item.product.description
     %h4(style="text-align:center")
       %a.btn(href="product_details.html")
         %i.icon-zoom-in
-      %a.btn(href="#" ng-hide="cartContains(#{product.id})" ng-click="addToCart(#{product.id})")
+      %a.btn(href="#" ng-hide="cartContains(#{item.product.id})" ng-click="addToCart(#{item.product.id})")
         Add to
         %i.icon-shopping-cart
-      %a.btn(href="#" ng-show="cartContains(#{product.id})")
+      %a.btn(href="#" ng-show="cartContains(#{item.product.id})")
         Already in
         %i.icon-shopping-cart
       %a.btn.btn-primary(href="#")

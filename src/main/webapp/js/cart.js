@@ -11,7 +11,7 @@ app.service("CartService", function($http){
         return $http.delete("/api/v1/cart/"+id);
     };
     this.updateCart = function(id, quantity){
-        return $http.({
+        return $http({
             url: "/api/v1/cart/"+id,
             method: "PUT",
             data: {quantity: quantity}

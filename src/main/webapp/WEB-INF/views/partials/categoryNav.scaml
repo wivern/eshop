@@ -1,13 +1,15 @@
 -@ val category : domain.Category
 
-- if (category.children.isEmpty){
+- val children = category.children.iterator.toList
+
+- if (children.isEmpty){
   %li
     %a(href="/products/#{category.id}")= category.name
 - } else {
   %li.subMenu
     %a(href="/products/#{category.id}")= category.name
     %ul
-      - category.children.map {child =>
+      - children.map {child =>
         %li
           %a(href="/products/#{child.id}")
             %i.icon-chevron-right

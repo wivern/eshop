@@ -1,4 +1,5 @@
 -@ val category : domain.Category
+-@ val products : List[domain.price.ProductItem]
 - attributes("title") = category.name
 
 %p
@@ -27,8 +28,8 @@
 %br.clr/
 .tab-content
   .tab-pane#listView
-    - category.products.map {product => render("/WEB-INF/views/partials/productCellListView.scaml", Map("product" -> product))}
+    - products.map {item => render("/WEB-INF/views/partials/productCellListView.scaml", Map("item" -> item))}
     %hr.soft
   .tab-pane.active#blockView
     %ul.thumbnails
-      - category.products.map {product => render("/WEB-INF/views/partials/productCellBlockView.scaml", Map("product" -> product))}
+      - products.map {item => render("/WEB-INF/views/partials/productCellBlockView.scaml", Map("item" -> item))}

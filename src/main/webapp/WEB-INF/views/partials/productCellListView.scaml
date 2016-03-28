@@ -1,4 +1,4 @@
--@ val product : domain.Product
+-@ val item : domain.price.ProductItem
 
 .row
   .span2
@@ -7,8 +7,8 @@
     %h3
       New | Available
     %hr.soft
-    %h5= product.name
-    %p= product.description
+    %h5= item.product.name
+    %p= item.product.description
     %a.btn.btn-small.pull-right(href="product_details.html")
       View Details
     %br.clr/
@@ -20,10 +20,10 @@
         %input(type="checkbox")
         Adds product to compair
       %br/
-      %a.btn.btn-large.btn-primary(href="#" ng-click="addToCart(#{product.id})" ng-hide="cartContains(#{product.id})")
+      %a.btn.btn-large.btn-primary(href="#" ng-click="addToCart(#{item.product.id})" ng-hide="cartContains(#{item.product.id})")
         Add to
         %i.icon-shopping-cart
-      %a.btn.btn-large(ng-show="cartContains(#{product.id})")
+      %a.btn.btn-large(ng-show="cartContains(#{item.product.id})")
         Already in
         %i.icon-shopping-cart
       %a.btn.btn-large(href="product_details.html")

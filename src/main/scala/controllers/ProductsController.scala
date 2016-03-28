@@ -1,7 +1,6 @@
 package controllers
 
-import domain.Category
-import org.scalatra.NotFound
+import domain.{Category,Product}
 import services.TopCategoriesSupport
 
 /**
@@ -9,17 +8,12 @@ import services.TopCategoriesSupport
  * @since 21.03.2016 18:15
  */
 class ProductsController extends ControllerBase with TopCategoriesSupport {
+  import services.PricingService._
   get("/:catId") {
-    val catId = try {
-      params("catId").toLong
-    } catch {
-      case e: NumberFormatException => None
-    }
-    val category = catId match {
-      case c: Long => Category.get(c)
-      case None => NotFound
-    }
+    val catId = params.getOrElse("catId", halt(400)).toLong
+    val category = Category.get(catId)
+    val products = productItem(Product.byCategory(catId).iterator.toList)
     contentType = "text/html; charset=UTF-8"
-    scaml("/products.scaml", "category" -> category)
+    scaml("/products.scaml", "category" -> category, "products" -> products)
   }
 }
